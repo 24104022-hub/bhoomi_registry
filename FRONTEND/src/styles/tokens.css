@@ -1,0 +1,685 @@
+:root {
+  /* =====================================================================
+     BHOOMI 2.0 MULTI-PALETTE DESIGN SYSTEM & DESIGN TOKENS
+     Palettes:
+     1. Government Blue
+     2. Emerald Green
+     3. Royal Purple
+     4. Teal
+     5. Warm Amber
+     6. Dark Professional
+     Each palette fully supports both Light and Dark mode.
+     ===================================================================== */
+
+  /* Default Typography */
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Smooth Corner Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Elevated Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 2px 6px -1px rgba(15, 23, 42, 0.06), 0 1px 4px -1px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 10px 20px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shared Semantic Badges & Status */
+  --gold-700: #B45309;
+  --gold-600: #D97706;
+  --gold-500: #F59E0B;
+  --gold-100: #FEF3C7;
+  --gold-50:  #FFFBEB;
+
+  --maroon-700: #B91C1C;
+  --maroon-600: #DC2626;
+  --maroon-500: #EF4444;
+  --maroon-100: #FEE2E2;
+  --maroon-50:  #FEF2F2;
+
+  --green-700: #047857;
+  --green-600: #059669;
+  --green-500: #10B981;
+  --green-400: #34D399;
+  --green-100: #D1FAE5;
+  --green-50:  #ECFDF5;
+
+  --blue-700: #1D4ED8;
+  --blue-600: #2563EB;
+  --blue-500: #3B82F6;
+  --blue-100: #DBEAFE;
+  --blue-50:  #EFF6FF;
+
+  --navy-950: #0A0F1D;
+  --navy-900: #0F172A;
+  --navy-800: #1E293B;
+  --navy-700: #334155;
+  --navy-600: #475569;
+  --navy-100: #F1F5F9;
+
+  --fs-scale: 1;
+}
+
+/* =====================================================================
+   PALETTE 1: GOVERNMENT BLUE (DEFAULT)
+   ===================================================================== */
+:root,
+:root[data-theme="government-blue"] {
+  --paper: #F8FAFC;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F1F5F9;
+  --paper-subtle: #E2E8F0;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #0F172A;
+  --ink-soft: #475569;
+  --ink-muted: #94A3B8;
+  --ink-inverted: #FFFFFF;
+
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --line-focus: #2563EB;
+
+  --primary: #1D4ED8;
+  --primary-hover: #1E40AF;
+  --primary-active: #1E3A8A;
+  --primary-light: #EFF6FF;
+  --primary-border: #BFDBFE;
+  --primary-gradient: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  --primary-glow: rgba(37, 99, 235, 0.25);
+
+  --brand-accent: #3B82F6;
+  --sidebar-bg: #0A192F;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(37, 99, 235, 0.16);
+  --sidebar-nav-active-text: #60A5FA;
+  --masthead-bg: #0A192F;
+  --masthead-cta-bg: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  --badge-primary-bg: #DBEAFE;
+  --badge-primary-text: #1E40AF;
+
+  color-scheme: light;
+}
+
+:root[data-theme="government-blue"][data-mode="dark"],
+:root[data-theme="government-blue"][data-is-dark="true"] {
+  --paper: #090D16;
+  --paper-raised: #0F172A;
+  --paper-soft: #1E293B;
+  --paper-subtle: #334155;
+  --paper-overlay: rgba(15, 23, 42, 0.88);
+
+  --ink: #F8FAFC;
+  --ink-soft: #94A3B8;
+  --ink-muted: #64748B;
+  --ink-inverted: #0F172A;
+
+  --line: #1E293B;
+  --line-strong: #334155;
+  --line-focus: #60A5FA;
+
+  --primary: #3B82F6;
+  --primary-hover: #60A5FA;
+  --primary-active: #2563EB;
+  --primary-light: rgba(59, 130, 246, 0.16);
+  --primary-border: #1E3A8A;
+  --primary-gradient: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  --primary-glow: rgba(59, 130, 246, 0.35);
+
+  --brand-accent: #93C5FD;
+  --sidebar-bg: #050810;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(59, 130, 246, 0.2);
+  --sidebar-nav-active-text: #93C5FD;
+  --masthead-bg: #050810;
+  --masthead-cta-bg: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  --badge-primary-bg: rgba(59, 130, 246, 0.2);
+  --badge-primary-text: #93C5FD;
+
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   PALETTE 2: EMERALD GREEN
+   ===================================================================== */
+:root[data-theme="emerald-green"] {
+  --paper: #F8FAFC;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F1F5F9;
+  --paper-subtle: #E2E8F0;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #0F172A;
+  --ink-soft: #475569;
+  --ink-muted: #94A3B8;
+  --ink-inverted: #FFFFFF;
+
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --line-focus: #10B981;
+
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-active: #065F46;
+  --primary-light: #ECFDF5;
+  --primary-border: #A7F3D0;
+  --primary-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
+  --primary-glow: rgba(16, 185, 129, 0.25);
+
+  --brand-accent: #10B981;
+  --sidebar-bg: #061F17;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(16, 185, 129, 0.15);
+  --sidebar-nav-active-text: #34D399;
+  --masthead-bg: #061F17;
+  --masthead-cta-bg: linear-gradient(135deg, #059669 0%, #047857 100%);
+  --badge-primary-bg: #D1FAE5;
+  --badge-primary-text: #065F46;
+
+  color-scheme: light;
+}
+
+:root[data-theme="emerald-green"][data-mode="dark"],
+:root[data-theme="emerald-green"][data-is-dark="true"] {
+  --paper: #071511;
+  --paper-raised: #0E231D;
+  --paper-soft: #16332A;
+  --paper-subtle: #21493C;
+  --paper-overlay: rgba(14, 35, 29, 0.88);
+
+  --ink: #F0FDF4;
+  --ink-soft: #9CA3AF;
+  --ink-muted: #6B7280;
+  --ink-inverted: #071511;
+
+  --line: #1A3B31;
+  --line-strong: #2A5A4B;
+  --line-focus: #34D399;
+
+  --primary: #10B981;
+  --primary-hover: #34D399;
+  --primary-active: #059669;
+  --primary-light: rgba(16, 185, 129, 0.16);
+  --primary-border: #065F46;
+  --primary-gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --primary-glow: rgba(16, 185, 129, 0.35);
+
+  --brand-accent: #6EE7B7;
+  --sidebar-bg: #030E0B;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(16, 185, 129, 0.2);
+  --sidebar-nav-active-text: #6EE7B7;
+  --masthead-bg: #030E0B;
+  --masthead-cta-bg: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --badge-primary-bg: rgba(16, 185, 129, 0.2);
+  --badge-primary-text: #6EE7B7;
+
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   PALETTE 3: ROYAL PURPLE
+   ===================================================================== */
+:root[data-theme="royal-purple"] {
+  --paper: #FAF8FF;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F3EEFF;
+  --paper-subtle: #E8DDFF;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #1E1035;
+  --ink-soft: #4B3E68;
+  --ink-muted: #8E7DAE;
+  --ink-inverted: #FFFFFF;
+
+  --line: #E8DDFF;
+  --line-strong: #D5C2FF;
+  --line-focus: #7C3AED;
+
+  --primary: #7C3AED;
+  --primary-hover: #6D28D9;
+  --primary-active: #5B21B6;
+  --primary-light: #F5F3FF;
+  --primary-border: #DDD6FE;
+  --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  --primary-glow: rgba(124, 58, 237, 0.25);
+
+  --brand-accent: #8B5CF6;
+  --sidebar-bg: #1B102F;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(124, 58, 237, 0.16);
+  --sidebar-nav-active-text: #C4B5FD;
+  --masthead-bg: #1B102F;
+  --masthead-cta-bg: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  --badge-primary-bg: #EDE9FE;
+  --badge-primary-text: #5B21B6;
+
+  color-scheme: light;
+}
+
+:root[data-theme="royal-purple"][data-mode="dark"],
+:root[data-theme="royal-purple"][data-is-dark="true"] {
+  --paper: #0E0919;
+  --paper-raised: #181128;
+  --paper-soft: #251B3D;
+  --paper-subtle: #352755;
+  --paper-overlay: rgba(24, 17, 40, 0.88);
+
+  --ink: #FAF5FF;
+  --ink-soft: #9CA3AF;
+  --ink-muted: #6B7280;
+  --ink-inverted: #0E0919;
+
+  --line: #281C44;
+  --line-strong: #3D2D63;
+  --line-focus: #A78BFA;
+
+  --primary: #A78BFA;
+  --primary-hover: #C4B5FD;
+  --primary-active: #8B5CF6;
+  --primary-light: rgba(167, 139, 250, 0.16);
+  --primary-border: #6D28D9;
+  --primary-gradient: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
+  --primary-glow: rgba(167, 139, 250, 0.35);
+
+  --brand-accent: #DDD6FE;
+  --sidebar-bg: #080410;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(167, 139, 250, 0.2);
+  --sidebar-nav-active-text: #DDD6FE;
+  --masthead-bg: #080410;
+  --masthead-cta-bg: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
+  --badge-primary-bg: rgba(167, 139, 250, 0.2);
+  --badge-primary-text: #DDD6FE;
+
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   PALETTE 4: TEAL
+   ===================================================================== */
+:root[data-theme="teal"] {
+  --paper: #F8FCFC;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F0F9FA;
+  --paper-subtle: #D9EFF2;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #082024;
+  --ink-soft: #28545B;
+  --ink-muted: #6C949B;
+  --ink-inverted: #FFFFFF;
+
+  --line: #D9EFF2;
+  --line-strong: #BADFE4;
+  --line-focus: #0D9488;
+
+  --primary: #0D9488;
+  --primary-hover: #0F766E;
+  --primary-active: #115E59;
+  --primary-light: #F0FDFA;
+  --primary-border: #99F6E4;
+  --primary-gradient: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --primary-glow: rgba(13, 148, 136, 0.25);
+
+  --brand-accent: #14B8A6;
+  --sidebar-bg: #061D21;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(13, 148, 136, 0.16);
+  --sidebar-nav-active-text: #2DD4BF;
+  --masthead-bg: #061D21;
+  --masthead-cta-bg: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --badge-primary-bg: #CCFBF1;
+  --badge-primary-text: #115E59;
+
+  color-scheme: light;
+}
+
+:root[data-theme="teal"][data-mode="dark"],
+:root[data-theme="teal"][data-is-dark="true"] {
+  --paper: #061619;
+  --paper-raised: #0D2327;
+  --paper-soft: #143338;
+  --paper-subtle: #1E474E;
+  --paper-overlay: rgba(13, 35, 39, 0.88);
+
+  --ink: #F0FDFA;
+  --ink-soft: #9CA3AF;
+  --ink-muted: #6B7280;
+  --ink-inverted: #061619;
+
+  --line: #173C42;
+  --line-strong: #235760;
+  --line-focus: #2DD4BF;
+
+  --primary: #2DD4BF;
+  --primary-hover: #5EEAD4;
+  --primary-active: #14B8A6;
+  --primary-light: rgba(45, 212, 191, 0.16);
+  --primary-border: #0F766E;
+  --primary-gradient: linear-gradient(135deg, #2DD4BF 0%, #0D9488 100%);
+  --primary-glow: rgba(45, 212, 191, 0.35);
+
+  --brand-accent: #5EEAD4;
+  --sidebar-bg: #030D0F;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(45, 212, 191, 0.2);
+  --sidebar-nav-active-text: #99F6E4;
+  --masthead-bg: #030D0F;
+  --masthead-cta-bg: linear-gradient(135deg, #2DD4BF 0%, #0D9488 100%);
+  --badge-primary-bg: rgba(45, 212, 191, 0.2);
+  --badge-primary-text: #99F6E4;
+
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   PALETTE 5: WARM AMBER
+   ===================================================================== */
+:root[data-theme="warm-amber"] {
+  --paper: #FDFBF7;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F9F5EC;
+  --paper-subtle: #EFE6D3;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #23180D;
+  --ink-soft: #5C4831;
+  --ink-muted: #9F8567;
+  --ink-inverted: #FFFFFF;
+
+  --line: #EFE6D3;
+  --line-strong: #DFCEB0;
+  --line-focus: #D97706;
+
+  --primary: #D97706;
+  --primary-hover: #B45309;
+  --primary-active: #92400E;
+  --primary-light: #FFFBEB;
+  --primary-border: #FDE68A;
+  --primary-gradient: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  --primary-glow: rgba(217, 119, 6, 0.25);
+
+  --brand-accent: #F59E0B;
+  --sidebar-bg: #23180D;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(217, 119, 6, 0.16);
+  --sidebar-nav-active-text: #FBBF24;
+  --masthead-bg: #23180D;
+  --masthead-cta-bg: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  --badge-primary-bg: #FEF3C7;
+  --badge-primary-text: #92400E;
+
+  color-scheme: light;
+}
+
+:root[data-theme="warm-amber"][data-mode="dark"],
+:root[data-theme="warm-amber"][data-is-dark="true"] {
+  --paper: #140E08;
+  --paper-raised: #1F160E;
+  --paper-soft: #2E2217;
+  --paper-subtle: #3F2F20;
+  --paper-overlay: rgba(31, 22, 14, 0.88);
+
+  --ink: #FFFBEB;
+  --ink-soft: #9CA3AF;
+  --ink-muted: #6B7280;
+  --ink-inverted: #140E08;
+
+  --line: #2F2115;
+  --line-strong: #4A3522;
+  --line-focus: #FBBF24;
+
+  --primary: #F59E0B;
+  --primary-hover: #FBBF24;
+  --primary-active: #D97706;
+  --primary-light: rgba(245, 158, 11, 0.16);
+  --primary-border: #B45309;
+  --primary-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --primary-glow: rgba(245, 158, 11, 0.35);
+
+  --brand-accent: #FDE68A;
+  --sidebar-bg: #0C0804;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(245, 158, 11, 0.2);
+  --sidebar-nav-active-text: #FDE68A;
+  --masthead-bg: #0C0804;
+  --masthead-cta-bg: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --badge-primary-bg: rgba(245, 158, 11, 0.2);
+  --badge-primary-text: #FDE68A;
+
+  color-scheme: dark;
+}
+
+/* =====================================================================
+   PALETTE 6: DARK PROFESSIONAL
+   ===================================================================== */
+:root[data-theme="dark-professional"] {
+  --paper: #F8FAFC;
+  --paper-raised: #FFFFFF;
+  --paper-soft: #F1F5F9;
+  --paper-subtle: #E2E8F0;
+  --paper-overlay: rgba(255, 255, 255, 0.88);
+
+  --ink: #0F172A;
+  --ink-soft: #475569;
+  --ink-muted: #94A3B8;
+  --ink-inverted: #FFFFFF;
+
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --line-focus: #334155;
+
+  --primary: #334155;
+  --primary-hover: #1E293B;
+  --primary-active: #0F172A;
+  --primary-light: #F1F5F9;
+  --primary-border: #CBD5E1;
+  --primary-gradient: linear-gradient(135deg, #334155 0%, #1E293B 100%);
+  --primary-glow: rgba(51, 65, 85, 0.25);
+
+  --brand-accent: #0284C7;
+  --sidebar-bg: #0F172A;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.04);
+  --sidebar-nav-active-bg: rgba(255, 255, 255, 0.12);
+  --sidebar-nav-active-text: #38BDF8;
+  --masthead-bg: #0F172A;
+  --masthead-cta-bg: linear-gradient(135deg, #334155 0%, #1E293B 100%);
+  --badge-primary-bg: #E2E8F0;
+  --badge-primary-text: #0F172A;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark-professional"][data-mode="dark"],
+:root[data-theme="dark-professional"][data-is-dark="true"] {
+  --paper: #0A0A0E;
+  --paper-raised: #13131A;
+  --paper-soft: #1E1E28;
+  --paper-subtle: #2D2D3C;
+  --paper-overlay: rgba(19, 19, 26, 0.9);
+
+  --ink: #F8FAFC;
+  --ink-soft: #94A3B8;
+  --ink-muted: #64748B;
+  --ink-inverted: #0A0A0E;
+
+  --line: #20202D;
+  --line-strong: #303043;
+  --line-focus: #38BDF8;
+
+  --primary: #38BDF8;
+  --primary-hover: #7DD3FC;
+  --primary-active: #0284C7;
+  --primary-light: rgba(56, 189, 248, 0.16);
+  --primary-border: #0284C7;
+  --primary-gradient: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+  --primary-glow: rgba(56, 189, 248, 0.35);
+
+  --brand-accent: #7DD3FC;
+  --sidebar-bg: #060609;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-header-bg: rgba(255, 255, 255, 0.03);
+  --sidebar-nav-active-bg: rgba(56, 189, 248, 0.18);
+  --sidebar-nav-active-text: #38BDF8;
+  --masthead-bg: #060609;
+  --masthead-cta-bg: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+  --badge-primary-bg: rgba(56, 189, 248, 0.18);
+  --badge-primary-text: #7DD3FC;
+
+  color-scheme: dark;
+}
+
+/* Legacy Dark Mode Fallback */
+:root[data-theme="dark"] {
+  --paper: #0B0F19;
+  --paper-raised: #111827;
+  --paper-soft: #1F2937;
+  --paper-subtle: #374151;
+  --paper-overlay: rgba(17, 24, 39, 0.85);
+
+  --ink: #F9FAFB;
+  --ink-soft: #9CA3AF;
+  --ink-muted: #6B7280;
+  --ink-inverted: #0F172A;
+
+  --line: #1F2937;
+  --line-strong: #374151;
+  --line-focus: #34D399;
+
+  --primary: #10B981;
+  --primary-hover: #34D399;
+  --primary-active: #059669;
+  --primary-light: #064E3B;
+  --primary-border: #047857;
+  --primary-gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
+
+  color-scheme: dark;
+}
+
+/* Font Scales */
+:root[data-font="small"] { --fs-scale: 0.92; }
+:root[data-font="medium"] { --fs-scale: 1; }
+:root[data-font="large"] { --fs-scale: 1.12; }
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth Theme Transitions */
+html,
+body,
+.app-shell,
+.dash-sidebar,
+.dash-main,
+.dash-topbar,
+.masthead,
+.card,
+.btn,
+input,
+select,
+textarea,
+table,
+th,
+td,
+.badge,
+.site-footer {
+  transition: background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: calc(15px * var(--fs-scale));
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 0.5em 0;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.15rem; }
+h4 { font-size: 1.0rem; }
+
+p {
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 0.92rem;
+}
+
+::selection {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Focus Ring */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--line-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

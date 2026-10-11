@@ -1,0 +1,546 @@
+{
+  "info": {
+    "_postman_id": "bhoomi-land-registry-api-collection-v1",
+    "name": "Bhoomi Land Registry & Property Management API",
+    "description": "Complete REST API collection for Bhoomi Land Registry. Includes Authentication, Role-based Workflows (Citizen, Officer, Surveyor, Lawyer, Admin), Deeds, GIS Parcels, Payments, Transfers, and AI Assistant.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. System Health & Stats",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "health"]
+            }
+          }
+        },
+        {
+          "name": "Overview Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["stats"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Authentication",
+      "item": [
+        {
+          "name": "Login - Citizen (Auto saves Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.token) {",
+                  "    pm.collectionVariables.set('token', res.token);",
+                  "    console.log('JWT Token successfully set!');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"citizen@demo.in\",\n  \"password\": \"demo123\",\n  \"role\": \"citizen\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login - Registration Officer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.token) {",
+                  "    pm.collectionVariables.set('token', res.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"officer@demo.in\",\n  \"password\": \"demo123\",\n  \"role\": \"officer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login - Surveyor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.token) {",
+                  "    pm.collectionVariables.set('token', res.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"surveyor@demo.in\",\n  \"password\": \"demo123\",\n  \"role\": \"surveyor\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Register New Citizen",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Ravi Shankar\",\n  \"email\": \"ravi.shankar@example.com\",\n  \"password\": \"pass1234\",\n  \"phone\": \"+91 98888 77777\",\n  \"aadhaar\": \"XXXX-XXXX-9988\",\n  \"role\": \"citizen\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Get Current Profile (/me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Google OAuth - Get Authorization URL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/google/url?role=citizen&redirect=/app/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "google", "url"],
+              "query": [
+                { "key": "role", "value": "citizen" },
+                { "key": "redirect", "value": "/app/dashboard" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Google OAuth - Exchange Code (Auto saves Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.token) {",
+                  "    pm.collectionVariables.set('token', res.token);",
+                  "    console.log('Google OAuth JWT Token successfully set!');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"sim_eyJlbWFpbCI6ImFsZXguY2l0aXplbkBnbWFpbC5jb20iLCJuYW1lIjoiQWxleCBSYW1hbiAoR29vZ2xlKSIsInJvbGUiOiJjaXRpemVuIiwiZ29vZ2xlSWQiOiJnaWQtMTIzNDU2In0=\",\n  \"state\": \"eyJyb2xlIjoiY2l0aXplbiIsInJlZGlyZWN0IjoiL2FwcC9kYXNoYm9hcmQifQ==\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/google/exchange",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "google", "exchange"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Properties",
+      "item": [
+        {
+          "name": "List Properties",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/properties",
+              "host": ["{{baseUrl}}"],
+              "path": ["properties"]
+            }
+          }
+        },
+        {
+          "name": "Get Property Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/properties/PR-9001",
+              "host": ["{{baseUrl}}"],
+              "path": ["properties", "PR-9001"]
+            }
+          }
+        },
+        {
+          "name": "Create Property",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"3BHK Duplex Villa\",\n  \"type\": \"Residential\",\n  \"areaSqft\": 2200,\n  \"address\": \"Plot 45, Green Valley, Madurai\",\n  \"estValue\": 7500000,\n  \"parcelId\": \"LP-3301\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/properties",
+              "host": ["{{baseUrl}}"],
+              "path": ["properties"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Land Parcels (GIS)",
+      "item": [
+        {
+          "name": "List Land Parcels",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/land-parcels",
+              "host": ["{{baseUrl}}"],
+              "path": ["land-parcels"]
+            }
+          }
+        },
+        {
+          "name": "Get Land Parcel Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/land-parcels/LP-3301",
+              "host": ["{{baseUrl}}"],
+              "path": ["land-parcels", "LP-3301"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Registrations & Tracking",
+      "item": [
+        {
+          "name": "Submit Registration Application",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyTitle\": \"Commercial Office Complex\",\n  \"type\": \"Commercial\",\n  \"areaSqft\": 3500,\n  \"address\": \"88 Ring Road, Madurai\",\n  \"estValue\": 12000000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/registrations",
+              "host": ["{{baseUrl}}"],
+              "path": ["registrations"]
+            }
+          }
+        },
+        {
+          "name": "List All Registrations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/registrations",
+              "host": ["{{baseUrl}}"],
+              "path": ["registrations"]
+            }
+          }
+        },
+        {
+          "name": "Track Application (Public - No Token Needed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/registrations/track/REG-2026-0001",
+              "host": ["{{baseUrl}}"],
+              "path": ["registrations", "track", "REG-2026-0001"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. Surveyor Verification",
+      "item": [
+        {
+          "name": "Get Surveyor Review Queue",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/surveyor/queue",
+              "host": ["{{baseUrl}}"],
+              "path": ["surveyor", "queue"]
+            }
+          }
+        },
+        {
+          "name": "Verify Boundary",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"boundaryVerified\": true,\n  \"remarks\": \"GPS boundary surveyed and markers validated against revenue records.\",\n  \"surveyNo\": \"228/4A\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/surveyor/verify/LP-3301",
+              "host": ["{{baseUrl}}"],
+              "path": ["surveyor", "verify", "LP-3301"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07. Registrar & Digital Deeds",
+      "item": [
+        {
+          "name": "Get Registrar Approval Queue",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/registrar/queue",
+              "host": ["{{baseUrl}}"],
+              "path": ["registrar", "queue"]
+            }
+          }
+        },
+        {
+          "name": "Approve Registration & Auto-Issue Deed",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"office\": \"Madurai South Sub-Registrar Office\",\n  \"remarks\": \"All documents verified and stamp duty payment confirmed.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/registrar/approve/REG-2026-0001",
+              "host": ["{{baseUrl}}"],
+              "path": ["registrar", "approve", "REG-2026-0001"]
+            }
+          }
+        },
+        {
+          "name": "List All Digital Deeds",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/deeds",
+              "host": ["{{baseUrl}}"],
+              "path": ["deeds"]
+            }
+          }
+        },
+        {
+          "name": "Verify Deed Publicly (QR Code Web API)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deeds/verify/DEED-2026-0001",
+              "host": ["{{baseUrl}}"],
+              "path": ["deeds", "verify", "DEED-2026-0001"]
+            }
+          }
+        },
+        {
+          "name": "Download Deed PDF",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deeds/DEED-2026-0001/pdf",
+              "host": ["{{baseUrl}}"],
+              "path": ["deeds", "DEED-2026-0001", "pdf"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "08. Property Transfers",
+      "item": [
+        {
+          "name": "List Transfers",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transfers",
+              "host": ["{{baseUrl}}"],
+              "path": ["transfers"]
+            }
+          }
+        },
+        {
+          "name": "Initiate Transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"PR-9001\",\n  \"toOwner\": \"Meena Suresh\",\n  \"toEmail\": \"meena@demo.in\",\n  \"transferType\": \"Sale\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transfers",
+              "host": ["{{baseUrl}}"],
+              "path": ["transfers"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09. Bhoomi AI Assistant (Chatbot)",
+      "item": [
+        {
+          "name": "Ask Chatbot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"What are the mandatory documents required for agricultural land registration in Madurai?\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/chatbot/message",
+              "host": ["{{baseUrl}}"],
+              "path": ["chatbot", "message"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
